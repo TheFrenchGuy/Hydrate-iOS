@@ -3,19 +3,68 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29AF44549F0E87939BADF2BE /* Pods_HydrateWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9902DD68EBAEBD8BE6279FB0 /* Pods_HydrateWidgetExtension.framework */; };
+		51183532E30EB121A2DF9CFA /* Pods_Hydrate__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0016060B25323104E30656F6 /* Pods_Hydrate__macOS_.framework */; };
 		6001425125C209CB00903C1F /* HydrateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423E25C209CA00903C1F /* HydrateApp.swift */; };
 		6001425225C209CB00903C1F /* HydrateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423E25C209CA00903C1F /* HydrateApp.swift */; };
 		6001425325C209CB00903C1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423F25C209CA00903C1F /* ContentView.swift */; };
 		6001425425C209CB00903C1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423F25C209CA00903C1F /* ContentView.swift */; };
 		6001425525C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
 		6001425625C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
+		606EDEDF25C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
+		606EDEE025C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
+		606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEEF25C41A1D00A461D4 /* LottieView.swift */; };
+		606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */ = {isa = PBXBuildFile; fileRef = 606EDEF525C41A3700A461D4 /* ArrowDown.json */; };
+		606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
+		60FB417525C2EDD900624103 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FB417425C2EDD900624103 /* WidgetKit.framework */; };
+		60FB417725C2EDD900624103 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FB417625C2EDD900624103 /* SwiftUI.framework */; };
+		60FB417A25C2EDD900624103 /* HydrateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB417925C2EDD900624103 /* HydrateWidget.swift */; };
+		60FB417D25C2EDDB00624103 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FB417C25C2EDDB00624103 /* Assets.xcassets */; };
+		60FB417F25C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 60FB417B25C2EDD900624103 /* HydrateWidget.intentdefinition */; };
+		60FB418025C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 60FB417B25C2EDD900624103 /* HydrateWidget.intentdefinition */; };
+		60FB418325C2EDDB00624103 /* HydrateWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 60FB417225C2EDD900624103 /* HydrateWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		60FB41CC25C3057F00624103 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB41CB25C3057F00624103 /* SettingsView.swift */; };
+		60FB41CD25C3057F00624103 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB41CB25C3057F00624103 /* SettingsView.swift */; };
+		60FB41D225C30DC800624103 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB41D125C30DC800624103 /* SetupView.swift */; };
+		60FB41D325C30DC800624103 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB41D125C30DC800624103 /* SetupView.swift */; };
+		95F15BF4A1AF0937D5497D07 /* Pods_Hydrate__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CB2EA2A7BA620DB110C2C5 /* Pods_Hydrate__iOS_.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		60FB418125C2EDDB00624103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6001423925C209CA00903C1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60FB417125C2EDD900624103;
+			remoteInfo = HydrateWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		60FB418425C2EDDB00624103 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				60FB418325C2EDDB00624103 /* HydrateWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0016060B25323104E30656F6 /* Pods_Hydrate__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydrate__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05CB512272CB8783121E0485 /* Pods-Hydrate (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydrate (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Hydrate (iOS)/Pods-Hydrate (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		31DA1A9634A3310B6B0602A3 /* Pods-Hydrate (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydrate (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Hydrate (macOS)/Pods-Hydrate (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		325D8EA18B4A1FE29BDCA614 /* Pods-HydrateWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HydrateWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-HydrateWidgetExtension/Pods-HydrateWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		32A5E11356596A657520EC1A /* Pods-Hydrate (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydrate (macOS).release.xcconfig"; path = "Target Support Files/Pods-Hydrate (macOS)/Pods-Hydrate (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		57CB2EA2A7BA620DB110C2C5 /* Pods_Hydrate__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hydrate__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6001423E25C209CA00903C1F /* HydrateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrateApp.swift; sourceTree = "<group>"; };
 		6001423F25C209CA00903C1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6001424025C209CB00903C1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -24,6 +73,22 @@
 		6001424D25C209CB00903C1F /* Hydrate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydrate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6001424F25C209CB00903C1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6001425025C209CB00903C1F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		606EDEDE25C418E500A461D4 /* StickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyView.swift; sourceTree = "<group>"; };
+		606EDEEF25C41A1D00A461D4 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		606EDEF525C41A3700A461D4 /* ArrowDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArrowDown.json; sourceTree = "<group>"; };
+		606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		60FB417225C2EDD900624103 /* HydrateWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HydrateWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		60FB417425C2EDD900624103 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		60FB417625C2EDD900624103 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		60FB417925C2EDD900624103 /* HydrateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HydrateWidget.swift; sourceTree = "<group>"; };
+		60FB417B25C2EDD900624103 /* HydrateWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = HydrateWidget.intentdefinition; sourceTree = "<group>"; };
+		60FB417C25C2EDDB00624103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60FB417E25C2EDDB00624103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60FB41CB25C3057F00624103 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		60FB41D125C30DC800624103 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		6B407AAAE158CF78EA439675 /* Pods-HydrateWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HydrateWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-HydrateWidgetExtension/Pods-HydrateWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		9902DD68EBAEBD8BE6279FB0 /* Pods_HydrateWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HydrateWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9DEB35CDD3B68508305499 /* Pods-Hydrate (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hydrate (iOS).release.xcconfig"; path = "Target Support Files/Pods-Hydrate (iOS)/Pods-Hydrate (iOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F15BF4A1AF0937D5497D07 /* Pods_Hydrate__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,27 +104,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51183532E30EB121A2DF9CFA /* Pods_Hydrate__macOS_.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		60FB416F25C2EDD900624103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60FB417725C2EDD900624103 /* SwiftUI.framework in Frameworks */,
+				60FB417525C2EDD900624103 /* WidgetKit.framework in Frameworks */,
+				29AF44549F0E87939BADF2BE /* Pods_HydrateWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C643D9AF1A488E1468D7DD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05CB512272CB8783121E0485 /* Pods-Hydrate (iOS).debug.xcconfig */,
+				EE9DEB35CDD3B68508305499 /* Pods-Hydrate (iOS).release.xcconfig */,
+				31DA1A9634A3310B6B0602A3 /* Pods-Hydrate (macOS).debug.xcconfig */,
+				32A5E11356596A657520EC1A /* Pods-Hydrate (macOS).release.xcconfig */,
+				6B407AAAE158CF78EA439675 /* Pods-HydrateWidgetExtension.debug.xcconfig */,
+				325D8EA18B4A1FE29BDCA614 /* Pods-HydrateWidgetExtension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6001423825C209CA00903C1F = {
 			isa = PBXGroup;
 			children = (
 				6001423D25C209CA00903C1F /* Shared */,
 				6001424725C209CB00903C1F /* iOS */,
 				6001424E25C209CB00903C1F /* macOS */,
+				60FB417825C2EDD900624103 /* HydrateWidget */,
+				60FB417325C2EDD900624103 /* Frameworks */,
 				6001424625C209CB00903C1F /* Products */,
+				1C643D9AF1A488E1468D7DD2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		6001423D25C209CA00903C1F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				606EDEFD25C433A300A461D4 /* Models */,
+				606EDEEB25C41A1300A461D4 /* Extensions */,
+				60FB41CA25C3056A00624103 /* Views */,
 				6001423E25C209CA00903C1F /* HydrateApp.swift */,
-				6001423F25C209CA00903C1F /* ContentView.swift */,
 				6001424025C209CB00903C1F /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -69,6 +164,7 @@
 			children = (
 				6001424525C209CB00903C1F /* Hydrate.app */,
 				6001424D25C209CB00903C1F /* Hydrate.app */,
+				60FB417225C2EDD900624103 /* HydrateWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +186,65 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		606EDEEB25C41A1300A461D4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				606EDEF425C41A2D00A461D4 /* Lottie JSON */,
+				606EDEEF25C41A1D00A461D4 /* LottieView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		606EDEF425C41A2D00A461D4 /* Lottie JSON */ = {
+			isa = PBXGroup;
+			children = (
+				606EDEF525C41A3700A461D4 /* ArrowDown.json */,
+			);
+			path = "Lottie JSON";
+			sourceTree = "<group>";
+		};
+		606EDEFD25C433A300A461D4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		60FB417325C2EDD900624103 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60FB417425C2EDD900624103 /* WidgetKit.framework */,
+				60FB417625C2EDD900624103 /* SwiftUI.framework */,
+				57CB2EA2A7BA620DB110C2C5 /* Pods_Hydrate__iOS_.framework */,
+				0016060B25323104E30656F6 /* Pods_Hydrate__macOS_.framework */,
+				9902DD68EBAEBD8BE6279FB0 /* Pods_HydrateWidgetExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60FB417825C2EDD900624103 /* HydrateWidget */ = {
+			isa = PBXGroup;
+			children = (
+				60FB417925C2EDD900624103 /* HydrateWidget.swift */,
+				60FB417B25C2EDD900624103 /* HydrateWidget.intentdefinition */,
+				60FB417C25C2EDDB00624103 /* Assets.xcassets */,
+				60FB417E25C2EDDB00624103 /* Info.plist */,
+			);
+			path = HydrateWidget;
+			sourceTree = "<group>";
+		};
+		60FB41CA25C3056A00624103 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6001423F25C209CA00903C1F /* ContentView.swift */,
+				60FB41CB25C3057F00624103 /* SettingsView.swift */,
+				606EDEDE25C418E500A461D4 /* StickyView.swift */,
+				60FB41D125C30DC800624103 /* SetupView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -97,13 +252,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6001425925C209CB00903C1F /* Build configuration list for PBXNativeTarget "Hydrate (iOS)" */;
 			buildPhases = (
+				40B03A19A611FF890C0FBBB6 /* [CP] Check Pods Manifest.lock */,
 				6001424125C209CB00903C1F /* Sources */,
 				6001424225C209CB00903C1F /* Frameworks */,
 				6001424325C209CB00903C1F /* Resources */,
+				60FB418425C2EDDB00624103 /* Embed App Extensions */,
+				A00ED62E8CBF1D8325848E30 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				60FB418225C2EDDB00624103 /* PBXTargetDependency */,
 			);
 			name = "Hydrate (iOS)";
 			productName = "Hydrate (iOS)";
@@ -114,6 +273,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6001425C25C209CB00903C1F /* Build configuration list for PBXNativeTarget "Hydrate (macOS)" */;
 			buildPhases = (
+				8F68B9744AD3C54EC5EAF1BB /* [CP] Check Pods Manifest.lock */,
 				6001424925C209CB00903C1F /* Sources */,
 				6001424A25C209CB00903C1F /* Frameworks */,
 				6001424B25C209CB00903C1F /* Resources */,
@@ -126,6 +286,24 @@
 			productName = "Hydrate (macOS)";
 			productReference = 6001424D25C209CB00903C1F /* Hydrate.app */;
 			productType = "com.apple.product-type.application";
+		};
+		60FB417125C2EDD900624103 /* HydrateWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60FB418725C2EDDB00624103 /* Build configuration list for PBXNativeTarget "HydrateWidgetExtension" */;
+			buildPhases = (
+				21AEF2A4C73F603EFF0B9E28 /* [CP] Check Pods Manifest.lock */,
+				60FB416E25C2EDD900624103 /* Sources */,
+				60FB416F25C2EDD900624103 /* Frameworks */,
+				60FB417025C2EDD900624103 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HydrateWidgetExtension;
+			productName = HydrateWidgetExtension;
+			productReference = 60FB417225C2EDD900624103 /* HydrateWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -140,6 +318,9 @@
 						CreatedOnToolsVersion = 12.4;
 					};
 					6001424C25C209CB00903C1F = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					60FB417125C2EDD900624103 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
@@ -159,6 +340,7 @@
 			targets = (
 				6001424425C209CB00903C1F /* Hydrate (iOS) */,
 				6001424C25C209CB00903C1F /* Hydrate (macOS) */,
+				60FB417125C2EDD900624103 /* HydrateWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -169,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6001425525C209CB00903C1F /* Assets.xcassets in Resources */,
+				606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +363,101 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60FB417025C2EDD900624103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60FB417D25C2EDDB00624103 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21AEF2A4C73F603EFF0B9E28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HydrateWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40B03A19A611FF890C0FBBB6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hydrate (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F68B9744AD3C54EC5EAF1BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hydrate (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A00ED62E8CBF1D8325848E30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hydrate (iOS)/Pods-Hydrate (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hydrate (iOS)/Pods-Hydrate (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hydrate (iOS)/Pods-Hydrate (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6001424125C209CB00903C1F /* Sources */ = {
@@ -188,7 +465,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6001425325C209CB00903C1F /* ContentView.swift in Sources */,
+				60FB41CC25C3057F00624103 /* SettingsView.swift in Sources */,
+				60FB418025C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */,
+				606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */,
+				60FB41D225C30DC800624103 /* SetupView.swift in Sources */,
+				606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */,
 				6001425125C209CB00903C1F /* HydrateApp.swift in Sources */,
+				606EDEDF25C418E500A461D4 /* StickyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,12 +479,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60FB41CD25C3057F00624103 /* SettingsView.swift in Sources */,
+				606EDEE025C418E500A461D4 /* StickyView.swift in Sources */,
 				6001425425C209CB00903C1F /* ContentView.swift in Sources */,
+				60FB41D325C30DC800624103 /* SetupView.swift in Sources */,
 				6001425225C209CB00903C1F /* HydrateApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60FB416E25C2EDD900624103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60FB417F25C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */,
+				60FB417A25C2EDD900624103 /* HydrateWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		60FB418225C2EDDB00624103 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60FB417125C2EDD900624103 /* HydrateWidgetExtension */;
+			targetProxy = 60FB418125C2EDDB00624103 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6001425725C209CB00903C1F /* Debug */ = {
@@ -317,7 +620,9 @@
 		};
 		6001425A25C209CB00903C1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05CB512272CB8783121E0485 /* Pods-Hydrate (iOS).debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -339,7 +644,9 @@
 		};
 		6001425B25C209CB00903C1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE9DEB35CDD3B68508305499 /* Pods-Hydrate (iOS).release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -362,6 +669,7 @@
 		};
 		6001425D25C209CB00903C1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31DA1A9634A3310B6B0602A3 /* Pods-Hydrate (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -386,6 +694,7 @@
 		};
 		6001425E25C209CB00903C1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32A5E11356596A657520EC1A /* Pods-Hydrate (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -405,6 +714,55 @@
 				PRODUCT_NAME = Hydrate;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		60FB418525C2EDDB00624103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B407AAAE158CF78EA439675 /* Pods-HydrateWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P69D93MRT6;
+				INFOPLIST_FILE = HydrateWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.NoedeLaCroix.Hydrate.HydrateWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		60FB418625C2EDDB00624103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 325D8EA18B4A1FE29BDCA614 /* Pods-HydrateWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P69D93MRT6;
+				INFOPLIST_FILE = HydrateWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.NoedeLaCroix.Hydrate.HydrateWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -434,6 +792,15 @@
 			buildConfigurations = (
 				6001425D25C209CB00903C1F /* Debug */,
 				6001425E25C209CB00903C1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60FB418725C2EDDB00624103 /* Build configuration list for PBXNativeTarget "HydrateWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60FB418525C2EDDB00624103 /* Debug */,
+				60FB418625C2EDDB00624103 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

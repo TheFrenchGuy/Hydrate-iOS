@@ -15,3 +15,7 @@ struct HydrateApp: App {
         }
     }
 }
+
+extension Color {
+    static let lightblue = Color(red: 23.0 / 255, green: 156.0 / 255, blue: 233.0 / 255)
+}
