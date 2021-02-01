@@ -15,6 +15,8 @@
 		6001425425C209CB00903C1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423F25C209CA00903C1F /* ContentView.swift */; };
 		6001425525C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
 		6001425625C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
+		6023507225C45E1300A31DE2 /* Autofiller Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023507125C45E1300A31DE2 /* Autofiller Name.swift */; };
+		6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 6024CA8B25C83678001147A8 /* SettingsLottie.json */; };
 		606EDEDF25C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
 		606EDEE025C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
 		606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEEF25C41A1D00A461D4 /* LottieView.swift */; };
@@ -73,6 +75,8 @@
 		6001424D25C209CB00903C1F /* Hydrate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hydrate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6001424F25C209CB00903C1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6001425025C209CB00903C1F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		6023507125C45E1300A31DE2 /* Autofiller Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Autofiller Name.swift"; sourceTree = "<group>"; };
+		6024CA8B25C83678001147A8 /* SettingsLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SettingsLottie.json; sourceTree = "<group>"; };
 		606EDEDE25C418E500A461D4 /* StickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyView.swift; sourceTree = "<group>"; };
 		606EDEEF25C41A1D00A461D4 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		606EDEF525C41A3700A461D4 /* ArrowDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArrowDown.json; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				606EDEF425C41A2D00A461D4 /* Lottie JSON */,
 				606EDEEF25C41A1D00A461D4 /* LottieView.swift */,
+				6023507125C45E1300A31DE2 /* Autofiller Name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				606EDEF525C41A3700A461D4 /* ArrowDown.json */,
+				6024CA8B25C83678001147A8 /* SettingsLottie.json */,
 			);
 			path = "Lottie JSON";
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */,
 				6001425525C209CB00903C1F /* Assets.xcassets in Resources */,
 				606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */,
 			);
@@ -466,6 +473,7 @@
 			files = (
 				6001425325C209CB00903C1F /* ContentView.swift in Sources */,
 				60FB41CC25C3057F00624103 /* SettingsView.swift in Sources */,
+				6023507225C45E1300A31DE2 /* Autofiller Name.swift in Sources */,
 				60FB418025C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */,
 				606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */,
 				60FB41D225C30DC800624103 /* SetupView.swift in Sources */,

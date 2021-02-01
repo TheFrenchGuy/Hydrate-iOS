@@ -10,7 +10,7 @@ import Combine
 import CoreHaptics
 
 struct SetupView: View {
-    @State var didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true //Wethever the user is logged in
+
     @State var weight: String = ""
     @State var hours: String = ""
     @State private var engine: CHHapticEngine?
@@ -52,7 +52,7 @@ struct SetupView: View {
 
                                                 HStack {
                                                 Image(systemName: "mount")
-                                                TextField("Rough Amount Eaten", text: self.$weight) //Input the rough amount eaten of the product
+                                                TextField("Body Weight (with or without shoes)", text: self.$weight) //Input the rough amount eaten of the product
                                                 .keyboardType(.numberPad)
                                                     .onReceive(Just(self.weight)) { newValue in //Filteres so only numbers can be inputed
                                                         let filtered = newValue.filter { "0123456789".contains($0) } //It can only contains numbers
@@ -71,7 +71,7 @@ struct SetupView: View {
                                             }
                                             
                                             
-                                            Text("How much sports do you do each week").animation(.easeIn).frame(width: 250, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .leading ).padding(.trailing, 80)
+                                            Text("How many hours of sports do you do weekly").animation(.easeIn).frame(width: 250, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .leading ).padding(.trailing, 80)
                                             VStack {
 
                                                 HStack {
@@ -153,7 +153,7 @@ struct SetupView: View {
         
     }
     
-    func prepareHaptics() {
+    func prepareHaptics() { //Needed in order to warm up the device
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
 
         do {
@@ -202,7 +202,7 @@ struct SetupView_Previews: PreviewProvider {
 }
 
 
-struct CompletionView: View {
+struct CompletionView: View { //Wont be displayed to the user instead it will be used to reload the content view
     @ObservedObject var userSettings = UserSettings()
     var body: some View {
         VStack {

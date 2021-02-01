@@ -27,9 +27,25 @@ class UserSettings: ObservableObject { //Class used to store user settings
         }
     }
     
-    init() {
+    @Published var notificationTime: Int32 {
+        didSet {
+            UserDefaults.standard.set(notificationTime, forKey: "notificationTime")
+        }
+    }
+    
+    @Published var cupSize: Int32 {
+        didSet {
+            UserDefaults.standard.set(cupSize, forKey: "cupSize")
+        }
+    }
+    
+    
+    
+    init() { //Initial the orignial value of the variables at inital startup
         self.weight = UserDefaults.standard.object(forKey: "weight") as? Double ?? 1.0
         self.exerciseweekly = UserDefaults.standard.object(forKey: "exerciseweekly") as? Double ?? 0.0
         self.waterintakedaily = UserDefaults.standard.object(forKey: "waterintakedaily") as? Double ?? 1.0
+        self.notificationTime = UserDefaults.standard.object(forKey: "notificationTime") as? Int32 ?? 15
+        self.cupSize = UserDefaults.standard.object(forKey: "cupSize") as? Int32 ?? 200
     }
 }
