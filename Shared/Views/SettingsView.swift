@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SettingsView: View {
     @Binding var isPresented: Bool
@@ -17,6 +18,7 @@ struct SettingsView: View {
     @State var size: CGSize = .zero ///Needed to align all the rows correctly
     @State var changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false //Wethever the user has adjusted values
     @State var showEmailAlert = false ///Show the email address when user promps alert
+    @State var showCalendar = false ///Show the Past data calendar to the user
     var format = "%g"
     var body: some View {
             ZStack {
@@ -86,13 +88,13 @@ struct SettingsView: View {
                             ZStack() {
                                  RoundedRectangle(cornerRadius: 15).stroke(Color.lightred, lineWidth: 6)
                                 Button(action: {
-                                    
-                                }) {
+                                    self.showCalendar.toggle()
+                                }){
                                     HStack {
                                      Text("Press here to search through previous day data")
                                         Image(systemName: "calendar")
                                     }.frame(width: geometry.size.width - 25).foregroundColor(.black)
-                                }
+                                }.sheet(isPresented: self.$showCalendar) { PastDataView()}
                             }
                         }.frame(width: bounds.size.width - 20,height: size.height * 3).padding(.bottom, 30)
                             
@@ -135,11 +137,13 @@ struct SettingsView: View {
                         
                         }.frame(width: UIScreen.main.bounds.width)
                     }
+                   
             }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             }.onAppear(perform: { //Retrieve the stored value
                 self.newWeight = userSettings.weight
                 self.newNotificationTiming = userSettings.notificationTime
                 self.newWorkout = userSettings.exerciseweekly
+                self.newCupSize = userSettings.cupSize
                 print("Data loaded") //debug only
                 
             })
@@ -154,6 +158,7 @@ struct SettingsView: View {
                     self.userSettings.weight = self.newWeight
                     self.userSettings.exerciseweekly = self.newWorkout
                     self.userSettings.notificationTime = self.newNotificationTiming
+                    self.userSettings.cupSize = self.newCupSize
                     waterintake()
                     UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                     NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
@@ -191,3 +196,56 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
+struct PastDataView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var userSettings = UserSettings()
+    @FetchRequest(fetchRequest: HydrationData.fetchAllItems()) var hydrationData: FetchedResults<HydrationData> //Fetches the coredate product stacks
+    @State var date: Date = Date()
+    var body: some View {
+        
+        VStack {
+            DatePicker("Date", selection: $date, displayedComponents: .date)
+            List() {
+                ForEach(hydrationData) { hydration in
+                    let timediff = Int(self.date.timeIntervalSince(hydration.dateIntake))
+                    if timediff <= 86400 && timediff >= 0 {
+                        HStack {
+                            Text("\(hydration.amountDrank)")
+                            Text("\(hydration.dateIntake)")
+                        }
+                    }
+                    
+                }.onDelete { indexSet  in
+                    for index in indexSet {
+                        viewContext.delete(hydrationData[index])
+                        delete(hydrationData[index])
+                        
+                    }
+                    do {
+                        try viewContext.save()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+    
+    func delete(_ i:HydrationData) {
+//        let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
+        let timediff = Int(self.userSettings.startDrinkTime.timeIntervalSince(i.dateIntake))
+        print(timediff)
+        if timediff <= 86400 {
+            self.userSettings.drankToday -= Int32(i.amountDrank)
+            UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
+            NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
+                print("Redirecting to Reload View")
+            
+        } else {
+            print("Nothing to delete since been more than a day")
+        }
+        
+    }
+}

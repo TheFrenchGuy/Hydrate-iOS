@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     @State var didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true //Wethever the user is logged in
     @State var changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false //Wethever the user has adjusted values
     @State var presentSheet = false
+    @State var waterAddSheet = false
     @ObservedObject var userSettings = UserSettings()
     @State var weight = UserSettings().weight
     @State var exerciseweekly = UserSettings().exerciseweekly
+    @State var test = ""
     var body: some View {
         ZStack {
             if self.didnotsetup { //First boot up initiziale setup
@@ -59,6 +62,8 @@ struct ContentView: View {
                     UserDefaults.standard.set(false, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                     NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
                         print("Redirecting to Reload View")
+                    
+                    self.test = "updated "
                 })
                 
             }
@@ -84,7 +89,16 @@ struct ContentView: View {
                     
                     VStack() {
                         Text("Add x ml of water to your daily intake").foregroundColor(.lightblue)
-                        Image(systemName: "plus.app")
+                        Text(test)
+                        Button(action: {
+                            self.waterAddSheet = true
+                        }) {
+                            Image(systemName: "plus.app")
+                                .font(.system(size: 54))
+                        }.sheet(isPresented: self.$waterAddSheet) {
+                            AddWaterView(isShown: self.$waterAddSheet)
+                        }
+                        
                         
                         //Text("\(userSettings.waterintakedaily) L")
                         //Text("\(exerciseweekly)")
@@ -102,7 +116,21 @@ struct ContentView: View {
                     }
                     
                     Spacer()
-                }
+                }.onAppear(perform: { // So that the timer resest automatically at midnight
+                    let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
+                    if timediff >= 86400 {
+                        self.userSettings.firstDrinkDay = true
+                        self.userSettings.startDrinkTime = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
+                        self.userSettings.drankToday = 0
+                        print("timedifference is more than a day")
+                        self.test = "timedifference is more than a day"
+                        UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
+                        NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
+                            print("Redirecting to Reload View")
+                        
+                        
+                    }
+                })
             }
             
             
@@ -127,6 +155,13 @@ struct ContentView: View {
                 self.changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false
             }
             //Necesarry to check changes on the view when loading
+            
+//            if userSettings.firstDrinkDay {
+//                userSettings.startDrinkTime = (Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()))!
+//            }
+            //let day: TimeInterval = 86400
+            
+        
         }
         
     }
@@ -149,13 +184,13 @@ struct ContentView: View {
             content.title = "Dont forget to drink 💧"
             content.body = "Dont forget to log it"
             content.sound = UNNotificationSound.default
-            let timing = userSettings.notificationTime * 3600 //So that it can be changed by the user in the settings
-
+        let timing:TimeInterval = TimeInterval(userSettings.notificationTime * 60) //So that it can be changed by the user in the settings
+            print(timing)
 //            var dateComponents = DateComponents()
 //            dateComponents.hour = 11
 //            dateComponents.minute = 59
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(timing), repeats: true)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timing, repeats: true)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request)
     }
@@ -172,7 +207,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.colorScheme, .light)
+        ContentView().environment(\.colorScheme, .light).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 
@@ -217,8 +252,20 @@ struct DisableModalDismiss: ViewModifier { //So in the setup view the sheet cann
 struct UserSettingsValues: View { //Debug only in case somnething goes wrong
     @ObservedObject var userSettings = UserSettings()
     var body: some View {
+        
+        Button(action: {
+            userSettings.startDrinkTime = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()))!
+        }) {
+            Text("Time")
+        }
         Text("\(userSettings.exerciseweekly)")
         Text("\(userSettings.weight)")
         Text("\(userSettings.waterintakedaily)")
+        Text("\(userSettings.startDrinkTime)")
+        Text("\(Date())")
+        Text("\(userSettings.drankToday)")
+        
+        
+
     }
 }

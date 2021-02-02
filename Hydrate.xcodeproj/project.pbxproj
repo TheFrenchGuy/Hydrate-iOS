@@ -15,13 +15,25 @@
 		6001425425C209CB00903C1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6001423F25C209CA00903C1F /* ContentView.swift */; };
 		6001425525C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
 		6001425625C209CB00903C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6001424025C209CB00903C1F /* Assets.xcassets */; };
+		601392CF25C8C93C00143914 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
 		6023507225C45E1300A31DE2 /* Autofiller Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023507125C45E1300A31DE2 /* Autofiller Name.swift */; };
 		6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 6024CA8B25C83678001147A8 /* SettingsLottie.json */; };
+		60699E9725C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */; };
+		60699E9825C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */; };
+		60699EBE25C8AE61007B2519 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60699EBD25C8AE61007B2519 /* Persistence.swift */; };
+		60699EBF25C8AE61007B2519 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60699EBD25C8AE61007B2519 /* Persistence.swift */; };
 		606EDEDF25C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
 		606EDEE025C418E500A461D4 /* StickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEDE25C418E500A461D4 /* StickyView.swift */; };
 		606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEEF25C41A1D00A461D4 /* LottieView.swift */; };
 		606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */ = {isa = PBXBuildFile; fileRef = 606EDEF525C41A3700A461D4 /* ArrowDown.json */; };
 		606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
+		60A0EEEA25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */; };
+		60A0EEEB25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */; };
+		60A0EEEC25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */; };
+		60A0EEED25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE925C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift */; };
+		60A0EEEE25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE925C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift */; };
+		60A0EEEF25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE925C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift */; };
+		60A0EEF725C8B48C001A73CE /* AddWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEF625C8B48C001A73CE /* AddWaterView.swift */; };
 		60FB417525C2EDD900624103 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FB417425C2EDD900624103 /* WidgetKit.framework */; };
 		60FB417725C2EDD900624103 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FB417625C2EDD900624103 /* SwiftUI.framework */; };
 		60FB417A25C2EDD900624103 /* HydrateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FB417925C2EDD900624103 /* HydrateWidget.swift */; };
@@ -77,10 +89,16 @@
 		6001425025C209CB00903C1F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		6023507125C45E1300A31DE2 /* Autofiller Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Autofiller Name.swift"; sourceTree = "<group>"; };
 		6024CA8B25C83678001147A8 /* SettingsLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SettingsLottie.json; sourceTree = "<group>"; };
+		60699E9425C879EE007B2519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		60699E9625C8AD51007B2519 /* WaterHydrationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WaterHydrationModel.xcdatamodel; sourceTree = "<group>"; };
+		60699EBD25C8AE61007B2519 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		606EDEDE25C418E500A461D4 /* StickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyView.swift; sourceTree = "<group>"; };
 		606EDEEF25C41A1D00A461D4 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		606EDEF525C41A3700A461D4 /* ArrowDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArrowDown.json; sourceTree = "<group>"; };
 		606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydrationData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		60A0EEE925C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydrationData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		60A0EEF625C8B48C001A73CE /* AddWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaterView.swift; sourceTree = "<group>"; };
 		60FB417225C2EDD900624103 /* HydrateWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HydrateWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FB417425C2EDD900624103 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		60FB417625C2EDD900624103 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -141,6 +159,9 @@
 		6001423825C209CA00903C1F = {
 			isa = PBXGroup;
 			children = (
+				60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */,
+				60A0EEE925C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift */,
+				60699E9425C879EE007B2519 /* README.md */,
 				6001423D25C209CA00903C1F /* Shared */,
 				6001424725C209CB00903C1F /* iOS */,
 				6001424E25C209CB00903C1F /* macOS */,
@@ -158,7 +179,9 @@
 				606EDEEB25C41A1300A461D4 /* Extensions */,
 				60FB41CA25C3056A00624103 /* Views */,
 				6001423E25C209CA00903C1F /* HydrateApp.swift */,
+				60699EBD25C8AE61007B2519 /* Persistence.swift */,
 				6001424025C209CB00903C1F /* Assets.xcassets */,
+				60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -247,6 +270,7 @@
 				60FB41CB25C3057F00624103 /* SettingsView.swift */,
 				606EDEDE25C418E500A461D4 /* StickyView.swift */,
 				60FB41D125C30DC800624103 /* SetupView.swift */,
+				60A0EEF625C8B48C001A73CE /* AddWaterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,10 +495,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60699EBE25C8AE61007B2519 /* Persistence.swift in Sources */,
 				6001425325C209CB00903C1F /* ContentView.swift in Sources */,
 				60FB41CC25C3057F00624103 /* SettingsView.swift in Sources */,
 				6023507225C45E1300A31DE2 /* Autofiller Name.swift in Sources */,
+				60A0EEEA25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */,
 				60FB418025C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */,
+				60699E9725C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */,
+				60A0EEED25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */,
+				60A0EEF725C8B48C001A73CE /* AddWaterView.swift in Sources */,
 				606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */,
 				60FB41D225C30DC800624103 /* SetupView.swift in Sources */,
 				606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */,
@@ -489,8 +518,13 @@
 			files = (
 				60FB41CD25C3057F00624103 /* SettingsView.swift in Sources */,
 				606EDEE025C418E500A461D4 /* StickyView.swift in Sources */,
+				601392CF25C8C93C00143914 /* UserSettingsModel.swift in Sources */,
+				60699E9825C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */,
+				60699EBF25C8AE61007B2519 /* Persistence.swift in Sources */,
+				60A0EEEB25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */,
 				6001425425C209CB00903C1F /* ContentView.swift in Sources */,
 				60FB41D325C30DC800624103 /* SetupView.swift in Sources */,
+				60A0EEEE25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */,
 				6001425225C209CB00903C1F /* HydrateApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,7 +533,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60A0EEEF25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */,
 				60FB417F25C2EDDB00624103 /* HydrateWidget.intentdefinition in Sources */,
+				60A0EEEC25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */,
 				60FB417A25C2EDD900624103 /* HydrateWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -814,6 +850,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				60699E9625C8AD51007B2519 /* WaterHydrationModel.xcdatamodel */,
+			);
+			currentVersion = 60699E9625C8AD51007B2519 /* WaterHydrationModel.xcdatamodel */;
+			path = WaterHydrationModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6001423925C209CA00903C1F /* Project object */;
 }
