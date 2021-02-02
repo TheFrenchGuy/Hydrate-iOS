@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @State var didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true //Wethever the user is logged in
     @State var changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false //Wethever the user has adjusted values
     @State var presentSheet = false
@@ -119,6 +120,7 @@ struct ContentView: View {
                 }.onAppear(perform: { // So that the timer resest automatically at midnight
                     let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
                     if timediff >= 86400 {
+                        self.AddToWeekly()
                         self.userSettings.firstDrinkDay = true
                         self.userSettings.startDrinkTime = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
                         self.userSettings.drankToday = 0
@@ -195,6 +197,20 @@ struct ContentView: View {
             UNUserNotificationCenter.current().add(request)
     }
     
+    func AddToWeekly() {
+        let i = HydrationDailyData(context: viewContext)
+
+        i.id = UUID()
+        i.forDate = userSettings.startDrinkTime
+        i.amountDrank = Int64(userSettings.drankToday)
+        do {
+            try viewContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+
+    }
+    
     func waterintake() {
         let hourstominutes = (Double(userSettings.exerciseweekly) ) * 60
         let restingLitres = (Double(userSettings.weight) ) * (0.04346551772)
@@ -212,7 +228,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension UIApplication { //Neccesary for the view sheet so that it cannot be dismissed
-
     func visibleViewController() -> UIViewController? {
         guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return nil }
         guard let rootViewController = window.rootViewController else { return nil }

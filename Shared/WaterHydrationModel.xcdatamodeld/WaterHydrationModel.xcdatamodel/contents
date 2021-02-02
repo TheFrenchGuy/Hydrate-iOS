@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="HydrationDailyData" representedClassName="HydrationDailyData" syncable="YES">
+        <attribute name="amountDrank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="forDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
     <entity name="HydrationData" representedClassName="HydrationData" syncable="YES">
         <attribute name="amountDrank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="beverage" optional="YES" attributeType="String"/>
@@ -7,9 +12,8 @@
         <attribute name="dateIntake" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
-    <entity name="HydrationWeeklyData" representedClassName="HydrationWeeklyData" syncable="YES" codeGenerationType="class"/>
     <elements>
+        <element name="HydrationDailyData" positionX="-63" positionY="18" width="128" height="74"/>
         <element name="HydrationData" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="HydrationWeeklyData" positionX="-63" positionY="18" width="128" height="29"/>
     </elements>
 </model>

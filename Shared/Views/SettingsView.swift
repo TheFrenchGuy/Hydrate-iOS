@@ -200,6 +200,7 @@ struct PastDataView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var userSettings = UserSettings()
     @FetchRequest(fetchRequest: HydrationData.fetchAllItems()) var hydrationData: FetchedResults<HydrationData> //Fetches the coredate product stacks
+    @FetchRequest(fetchRequest: HydrationDailyData.fetchAllItems()) var hydrationDailyData: FetchedResults<HydrationDailyData> //Fetches the coredate product stacks
     @State var date: Date = Date()
     var body: some View {
         
@@ -229,6 +230,17 @@ struct PastDataView: View {
                     
                 }
                 
+            }
+            
+            
+                List(){
+                    Text("Daily record")
+                    ForEach(hydrationDailyData) { hydration in
+                    HStack {
+                        Text("\(hydration.amountDrank)")
+                        Text("\(hydration.forDate!)")
+                    }
+                }
             }
         }
     }
