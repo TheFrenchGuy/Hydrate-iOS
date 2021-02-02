@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import Combine
+import AVFoundation
 
 struct AddWaterView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -18,6 +19,8 @@ struct AddWaterView: View {
     @State private var selectedBeverage = 0
     @State var amountDrank = "0"
     @State var cupDrank = 0
+    
+    @State var audioPlayer: AVAudioPlayer!
     var body: some View {
 
         NavigationView {
@@ -56,7 +59,12 @@ struct AddWaterView: View {
 
 
                         Button(action: {
+                            withAnimation() {
+                                playSounds("PooringWater.mp3")
+                            }
                             AddToWaterIntake()
+                            howMuchDrank()
+                            waterintake()
                             print("added water to intake")
                         }) {
                             Text("Drank it")
@@ -66,6 +74,15 @@ struct AddWaterView: View {
             }.navigationTitle("Water yourself")
         }
 
+    }
+    
+    func waterintake() {
+        let hourstominutes = (Double(userSettings.exerciseweekly) ) * 60
+        let restingLitres = (Double(userSettings.weight) ) * (0.04346551772)
+        let workoutLitres = (hourstominutes / 7) * (0.01182937429)
+        let total = restingLitres + workoutLitres
+        userSettings.waterintakedaily = total
+        
     }
     func AddToWaterIntake() {
         let i = HydrationData(context: viewContext)
@@ -112,6 +129,19 @@ struct AddWaterView: View {
 
 
     }
+    
+    func playSounds(_ soundFileName : String) {
+            guard let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: nil) else {
+                fatalError("Unable to find \(soundFileName) in bundle")
+            }
+
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            } catch {
+                print(error.localizedDescription)
+            }
+        audioPlayer.play()
+        }
 }
 
 struct AddWaterView_Previews: PreviewProvider {

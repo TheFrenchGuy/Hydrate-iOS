@@ -17,7 +17,8 @@ struct ContentView: View {
     @ObservedObject var userSettings = UserSettings()
     @State var weight = UserSettings().weight
     @State var exerciseweekly = UserSettings().exerciseweekly
-    @State var test = ""
+    
+    @State var percentagedrank: Double = 0.0
     var body: some View {
         ZStack {
             if self.didnotsetup { //First boot up initiziale setup
@@ -62,9 +63,7 @@ struct ContentView: View {
                     
                     UserDefaults.standard.set(false, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                     NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
-                        print("Redirecting to Reload View")
-                    
-                    self.test = "updated "
+                        print("Reloaded")
                 })
                 
             }
@@ -85,36 +84,29 @@ struct ContentView: View {
                         }
                         
                         Spacer()
-                    }
+                    }.zIndex(2)
                     Spacer()
-                    
-                    VStack() {
-                        Text("Add x ml of water to your daily intake").foregroundColor(.lightblue)
-                        Text(test)
-                        Button(action: {
-                            self.waterAddSheet = true
-                        }) {
-                            Image(systemName: "plus.app")
-                                .font(.system(size: 54))
-                        }.sheet(isPresented: self.$waterAddSheet) {
-                            AddWaterView(isShown: self.$waterAddSheet)
-                        }
-                        
-                        
-                        //Text("\(userSettings.waterintakedaily) L")
-                        //Text("\(exerciseweekly)")
-                        
-                        UserSettingsValues()
-                        
-                        Button(action: {
-                            UserDefaults.standard.set(true, forKey: "didnotsetup") // This means that the user is logging in the first time so he must complete the daily intake calculator
-                            NotificationCenter.default.post(name: NSNotification.Name("didnotsetup"), object: nil) //Put a backend notification to inform app the data has been written
-                        }) {
-                            Text("Reset")
-                                .foregroundColor(.black)
-                        }
+                        VStack(alignment: .center) {
+                            VStack {
+                                Button(action: {
+                                    self.waterAddSheet = true
 
-                    }
+                                }) {
+                                    Image(systemName: "plus.app").font(.system(size: 84))
+                                }.sheet(isPresented: self.$waterAddSheet) {
+                                    AddWaterView(isShown: self.$waterAddSheet)
+                                }
+
+                                Text("Add your drink").foregroundColor(.gray)
+                            }.zIndex(1)
+                            
+                            WaterDropView().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width, alignment: .center)
+                                
+                            UserSettingsValues()
+                            
+                        }.frame(width: UIScreen.main.bounds.width, alignment: .center)
+                        
+                    
                     
                     Spacer()
                 }.onAppear(perform: { // So that the timer resest automatically at midnight
@@ -122,10 +114,11 @@ struct ContentView: View {
                     if timediff >= 86400 {
                         self.AddToWeekly()
                         self.userSettings.firstDrinkDay = true
+                        self.userSettings.percentageDrank = 0
                         self.userSettings.startDrinkTime = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
                         self.userSettings.drankToday = 0
                         print("timedifference is more than a day")
-                        self.test = "timedifference is more than a day"
+                       
                         UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                         NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
                             print("Redirecting to Reload View")
@@ -267,20 +260,42 @@ struct DisableModalDismiss: ViewModifier { //So in the setup view the sheet cann
 struct UserSettingsValues: View { //Debug only in case somnething goes wrong
     @ObservedObject var userSettings = UserSettings()
     var body: some View {
-        
-        Button(action: {
-            userSettings.startDrinkTime = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date()))!
-        }) {
-            Text("Time")
+        VStack {
+            Text("\(userSettings.percentageDrank * 100, specifier: "%g")%").font(.largeTitle).bold()
+            Text("You drank \(userSettings.drankToday) ml of fluid so far").font(.headline).foregroundColor(.gray)
+            Text("\(userSettings.waterintakedaily)").font(.footnote)
         }
-        Text("\(userSettings.exerciseweekly)")
-        Text("\(userSettings.weight)")
-        Text("\(userSettings.waterintakedaily)")
-        Text("\(userSettings.startDrinkTime)")
-        Text("\(Date())")
-        Text("\(userSettings.drankToday)")
-        
         
 
     }
+    
+    
+}
+
+struct WaterDropView: View {
+    @ObservedObject var userSettings = UserSettings()
+    var body: some View {
+        GeometryReader() { geometry in
+        ZStack() {
+            Image("HydrateIcon").resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: geometry.size.width, height: geometry.size.width, alignment: .center)
+            
+                ZStack {
+                    Circle().foregroundColor(.white).frame(width: geometry.size.width , height: geometry.size.height , alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).offset(x: 0, y: -(geometry.size.width * 0.19))
+                }.offset(x: 0, y: -(geometry.size.width * CGFloat(userSettings.percentageDrank) * 0.62)).zIndex(1)
+            }.frame(width: geometry.size.width, height: geometry.size.width)
+        }
+        
+    }
+    
+}
+
+func howMuchDrank() {
+    let drank = UserSettings().drankToday
+    let shouldbe = UserSettings().waterintakedaily * 1000
+    let percentage = (Double(drank) / shouldbe)
+    UserSettings().percentageDrank = percentage
+    
+    
 }

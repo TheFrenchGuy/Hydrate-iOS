@@ -145,6 +145,8 @@ struct SettingsView: View {
                 self.newWorkout = userSettings.exerciseweekly
                 self.newCupSize = userSettings.cupSize
                 print("Data loaded") //debug only
+                UserDefaults.standard.set(false, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
+                NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
                 
             })
             .onPreferenceChange(SizePreferenceKey.self) { preferences in
@@ -166,6 +168,7 @@ struct SettingsView: View {
                 } else {
                     print("Data has not been changed")
                 }
+            howMuchDrank()
             })
     }
     struct SizePreferenceKey: PreferenceKey { ///Reference to https://stackoverflow.com/questions/56573373/swiftui-get-size-of-child //to get the size of the child

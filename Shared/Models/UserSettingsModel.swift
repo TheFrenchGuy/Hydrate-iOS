@@ -57,6 +57,12 @@ class UserSettings: ObservableObject { //Class used to store user settings
         }
     }
     
+    @Published var percentageDrank: Double {
+        didSet {
+            UserDefaults.standard.set(percentageDrank, forKey: "percentageDrank")
+        }
+    }
+    
     
     
     init() { //Initial the orignial value of the variables at inital startup
@@ -68,5 +74,6 @@ class UserSettings: ObservableObject { //Class used to store user settings
         self.firstDrinkDay = UserDefaults.standard.object(forKey: "firstDrinkDay") as? Bool ?? true
         self.startDrinkTime = UserDefaults.standard.object(forKey: "startDrinkTime") as? Date ?? (Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()))!
         self.drankToday = UserDefaults.standard.object(forKey: "drankToday") as? Int32 ?? 0
+        self.percentageDrank = UserDefaults.standard.object(forKey: "percentageDrank") as? Double ?? 0.0
     }
 }

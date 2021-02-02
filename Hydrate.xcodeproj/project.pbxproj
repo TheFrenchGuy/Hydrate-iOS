@@ -27,6 +27,7 @@
 		606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEEF25C41A1D00A461D4 /* LottieView.swift */; };
 		606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */ = {isa = PBXBuildFile; fileRef = 606EDEF525C41A3700A461D4 /* ArrowDown.json */; };
 		606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
+		60951DB925C9BB8D00489B18 /* PooringWater.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 60951DB825C9BB8D00489B18 /* PooringWater.mp3 */; };
 		609E063D25C98DB100D1BA0B /* HydrationDailyData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E063B25C98DB100D1BA0B /* HydrationDailyData+CoreDataClass.swift */; };
 		609E063E25C98DB100D1BA0B /* HydrationDailyData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609E063C25C98DB100D1BA0B /* HydrationDailyData+CoreDataProperties.swift */; };
 		60A0EEEA25C8B1BB001A73CE /* HydrationData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */; };
@@ -98,6 +99,7 @@
 		606EDEEF25C41A1D00A461D4 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		606EDEF525C41A3700A461D4 /* ArrowDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArrowDown.json; sourceTree = "<group>"; };
 		606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		60951DB825C9BB8D00489B18 /* PooringWater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PooringWater.mp3; sourceTree = "<group>"; };
 		609E063B25C98DB100D1BA0B /* HydrationDailyData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydrationDailyData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		609E063C25C98DB100D1BA0B /* HydrationDailyData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydrationDailyData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		60A0EEE825C8B1BB001A73CE /* HydrationData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HydrationData+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		606EDEEB25C41A1300A461D4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				609E064425C9B67100D1BA0B /* SoundEffect */,
 				606EDEF425C41A2D00A461D4 /* Lottie JSON */,
 				606EDEEF25C41A1D00A461D4 /* LottieView.swift */,
 				6023507125C45E1300A31DE2 /* Autofiller Name.swift */,
@@ -244,6 +247,14 @@
 				606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		609E064425C9B67100D1BA0B /* SoundEffect */ = {
+			isa = PBXGroup;
+			children = (
+				60951DB825C9BB8D00489B18 /* PooringWater.mp3 */,
+			);
+			path = SoundEffect;
 			sourceTree = "<group>";
 		};
 		60FB417325C2EDD900624103 /* Frameworks */ = {
@@ -386,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60951DB925C9BB8D00489B18 /* PooringWater.mp3 in Resources */,
 				6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */,
 				6001425525C209CB00903C1F /* Assets.xcassets in Resources */,
 				606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */,
