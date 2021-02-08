@@ -19,7 +19,8 @@ struct AddWaterView: View {
     @State private var selectedBeverage = 0
     @State var amountDrank = "0"
     @State var cupDrank = 0
-    
+    @State var date: Date = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0 , of: Date())!)
+    @State var test: Int = 0 //Used for the drinking percentage calculation
     @State var audioPlayer: AVAudioPlayer!
     var body: some View {
 
@@ -63,7 +64,7 @@ struct AddWaterView: View {
                                 playSounds("PooringWater.mp3")
                             }
                             AddToWaterIntake()
-                            howMuchDrank()
+                            howMuchDrank(drank: test)
                             waterintake()
                             print("added water to intake")
                         }) {
@@ -90,7 +91,9 @@ struct AddWaterView: View {
         let cup = Int64(self.cupDrank)
         
         i.id = UUID()
-        i.dateIntake = Date()
+        // i.dateIntake = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
+        i.dateIntake = Calendar.current.date(bySettingHour: Int(Calendar.current.component(.hour, from: Date())),minute: 0,second: 0 , of: Date()) ?? Date() //So that it sets the time to the start of the hour
+            ///Might be useful later when trying to add the time toghever
         i.beverage = self.beverageTypes[self.selectedBeverage]
         if drankml == 0 {
             print(cup)
@@ -128,6 +131,34 @@ struct AddWaterView: View {
 
 
 
+    }
+    
+    func AmountDrankDaily() {
+        
+        var viewContext: NSManagedObjectContext { PersistenceController.shared.container.viewContext } //remove error from '+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "HydrationData")
+        
+        do {
+            let result = try viewContext.fetch(req)
+            for i in result as! [NSManagedObject] {
+                          // let id = i.value(forKey: "id") as! UUID
+                           let dateIntake = i.value(forKey: "dateIntake") as! Date
+                           //let dailyAmountDrank = i.value(forKey: "dailyAmountDrank") as! Int64
+                          // let beverage = i.value(forKey: "beverage") as! String
+                           let amountDrank = i.value(forKey: "amountDrank") as! Int64
+                           
+                           let timediff = Int(dateIntake.timeIntervalSince(self.date))
+                           if timediff < 86400 && timediff >= 0 {
+                            var totalDayDrank: [Int] = []
+                            totalDayDrank.append(Int(amountDrank))
+                            self.test = totalDayDrank.reduce(0, +)
+                               print("Drank for today  \(totalDayDrank)")
+                           }
+            }
+
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func playSounds(_ soundFileName : String) {

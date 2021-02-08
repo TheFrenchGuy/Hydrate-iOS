@@ -14,7 +14,7 @@ target 'Hydrate (macOS)' do
   use_frameworks!
 
   # Pods for Hydrate (macOS)
-
+	pod 'lottie-ios'
 end
 
 target 'HydrateWidgetExtension' do

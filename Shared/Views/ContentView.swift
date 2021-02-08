@@ -8,6 +8,8 @@
 import SwiftUI
 import CoreData
 
+
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true //Wethever the user is logged in
@@ -17,6 +19,8 @@ struct ContentView: View {
     @ObservedObject var userSettings = UserSettings()
     @State var weight = UserSettings().weight
     @State var exerciseweekly = UserSettings().exerciseweekly
+    @State var date: Date = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0 , of: Date())!)
+    @State var totalDayDrank: [Int] = []
     
     @State var percentagedrank: Double = 0.0
     var body: some View {
@@ -60,10 +64,11 @@ struct ContentView: View {
             
             if self.changeOccured { //Makes the UI refresh when a changed has occured
                 Text("Reloading").onAppear(perform: {
-                    
+                    AmountDrankDaily()
                     UserDefaults.standard.set(false, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                     NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
                         print("Reloaded")
+                    
                 })
                 
             }
@@ -101,8 +106,8 @@ struct ContentView: View {
                             }.zIndex(1)
                             
                             WaterDropView().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width, alignment: .center)
-                                
-                            UserSettingsValues()
+                            
+                            UserSettingsValues(amountDrank: self.$totalDayDrank )
                             
                         }.frame(width: UIScreen.main.bounds.width, alignment: .center)
                         
@@ -137,9 +142,11 @@ struct ContentView: View {
         
         
         .onAppear {
+            
             scheduleNotifications() //In order to scheduleNotificaitons
             waterintake() //Incase of
          //Looks for if the value has changes so it can change the view
+            
              NotificationCenter.default.addObserver(forName: NSNotification.Name("didnotsetup"), object: nil, queue: .main) { (_) in
                  
                  self.didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true
@@ -189,7 +196,31 @@ struct ContentView: View {
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request)
     }
-    
+    func AmountDrankDaily() {
+        
+        var viewContext: NSManagedObjectContext { PersistenceController.shared.container.viewContext } //remove error from '+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "HydrationData")
+        
+        do {
+            let result = try viewContext.fetch(req)
+            for i in result as! [NSManagedObject] {
+                          // let id = i.value(forKey: "id") as! UUID
+                           let dateIntake = i.value(forKey: "dateIntake") as! Date
+                           //let dailyAmountDrank = i.value(forKey: "dailyAmountDrank") as! Int64
+                          // let beverage = i.value(forKey: "beverage") as! String
+                           let amountDrank = i.value(forKey: "amountDrank") as! Int64
+                           
+                           let timediff = Int(dateIntake.timeIntervalSince(self.date))
+                           if timediff < 86400 && timediff >= 0 {
+                            self.totalDayDrank.append(Int(amountDrank))
+                               print("Drank for today  \(totalDayDrank)")
+                           }
+            }
+
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     func AddToWeekly() {
         let i = HydrationDailyData(context: viewContext)
 
@@ -259,6 +290,7 @@ struct DisableModalDismiss: ViewModifier { //So in the setup view the sheet cann
 
 struct UserSettingsValues: View { //Debug only in case somnething goes wrong
     @ObservedObject var userSettings = UserSettings()
+    @Binding var amountDrank: [Int]
     var body: some View {
         VStack {
             Text("\(userSettings.percentageDrank * 100, specifier: "%g")%").font(.largeTitle).bold()
@@ -291,8 +323,7 @@ struct WaterDropView: View {
     
 }
 
-func howMuchDrank() {
-    let drank = UserSettings().drankToday
+func howMuchDrank(drank: Int) {
     let shouldbe = UserSettings().waterintakedaily * 1000
     let percentage = (Double(drank) / shouldbe)
     UserSettings().percentageDrank = percentage

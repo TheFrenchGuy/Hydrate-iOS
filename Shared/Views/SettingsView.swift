@@ -168,7 +168,7 @@ struct SettingsView: View {
                 } else {
                     print("Data has not been changed")
                 }
-            howMuchDrank()
+                howMuchDrank(drank: Int(userSettings.drankToday))
             })
     }
     struct SizePreferenceKey: PreferenceKey { ///Reference to https://stackoverflow.com/questions/56573373/swiftui-get-size-of-child //to get the size of the child
@@ -199,68 +199,3 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
-struct PastDataView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var userSettings = UserSettings()
-    @FetchRequest(fetchRequest: HydrationData.fetchAllItems()) var hydrationData: FetchedResults<HydrationData> //Fetches the coredate product stacks
-    @FetchRequest(fetchRequest: HydrationDailyData.fetchAllItems()) var hydrationDailyData: FetchedResults<HydrationDailyData> //Fetches the coredate product stacks
-    @State var date: Date = Date()
-    var body: some View {
-        
-        VStack {
-            DatePicker("Date", selection: $date, displayedComponents: .date)
-            List() {
-                ForEach(hydrationData) { hydration in
-                    let timediff = Int(self.date.timeIntervalSince(hydration.dateIntake))
-                    if timediff <= 86400 && timediff >= 0 {
-                        HStack {
-                            Text("\(hydration.amountDrank)")
-                            Text("\(hydration.dateIntake)")
-                        }
-                    }
-                    
-                }.onDelete { indexSet  in
-                    for index in indexSet {
-                        viewContext.delete(hydrationData[index])
-                        delete(hydrationData[index])
-                        
-                    }
-                    do {
-                        try viewContext.save()
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                    
-                }
-                
-            }
-            
-            
-                List(){
-                    Text("Daily record")
-                    ForEach(hydrationDailyData) { hydration in
-                    HStack {
-                        Text("\(hydration.amountDrank)")
-                        Text("\(hydration.forDate!)")
-                    }
-                }
-            }
-        }
-    }
-    
-    func delete(_ i:HydrationData) {
-//        let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
-        let timediff = Int(self.userSettings.startDrinkTime.timeIntervalSince(i.dateIntake))
-        print(timediff)
-        if timediff <= 86400 {
-            self.userSettings.drankToday -= Int32(i.amountDrank)
-            UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
-            NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
-                print("Redirecting to Reload View")
-            
-        } else {
-            print("Nothing to delete since been more than a day")
-        }
-        
-    }
-}
