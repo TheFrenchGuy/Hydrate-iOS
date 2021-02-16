@@ -20,7 +20,7 @@ struct AddWaterView: View {
     @State var amountDrank = "0"
     @State var cupDrank = 0
     @State var date: Date = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0 , of: Date())!)
-    @State var test: Int = 0 //Used for the drinking percentage calculation
+    @Binding var test: [Int] //Used for the drinking percentage calculation
     @State var audioPlayer: AVAudioPlayer!
     var body: some View {
 
@@ -64,7 +64,15 @@ struct AddWaterView: View {
                                 playSounds("PooringWater.mp3")
                             }
                             AddToWaterIntake()
-                            howMuchDrank(drank: test)
+                           // AmountDrankDaily()
+                            let drankml = Int64(self.amountDrank)
+                            if drankml == 0 {
+                                print("Cup drank \(self.cupDrank)")
+                                howMuchDrank(drank: test.reduce(0,+) + (Int(self.cupDrank) * Int(userSettings.cupSize))) //Not syncing onto the next screen
+                            } else {
+                                howMuchDrank(drank: test.reduce(0,+) + (Int(amountDrank) ?? 0))
+                                
+                            }
                             waterintake()
                             print("added water to intake")
                         }) {
@@ -99,20 +107,20 @@ struct AddWaterView: View {
             print(cup)
             print(userSettings.cupSize)
             i.amountDrank = cup * Int64(UserSettings().cupSize)
-           // i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
-            self.userSettings.drankToday += Int32(i.amountDrank)
+            i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
+//            self.userSettings.drankToday += Int32(i.amountDrank)
         }
         
         
         else if drankml != 0 && cupDrank != 0 { //Case where there is both the fields filled in
             i.amountDrank = drankml ?? 0
-          //  i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
-            self.userSettings.drankToday += Int32(i.amountDrank)
+            i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
+//            self.userSettings.drankToday += Int32(i.amountDrank)
         }
        else {
             i.amountDrank = drankml ?? 0
-          //  i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
-            self.userSettings.drankToday += Int32(i.amountDrank)
+            i.dailyAmountDrank = i.dailyAmountDrank + i.amountDrank
+//            self.userSettings.drankToday += Int32(i.amountDrank)
         }
         
         do {
@@ -133,33 +141,35 @@ struct AddWaterView: View {
 
     }
     
-    func AmountDrankDaily() {
-        
-        var viewContext: NSManagedObjectContext { PersistenceController.shared.container.viewContext } //remove error from '+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name
-        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "HydrationData")
-        
-        do {
-            let result = try viewContext.fetch(req)
-            for i in result as! [NSManagedObject] {
-                          // let id = i.value(forKey: "id") as! UUID
-                           let dateIntake = i.value(forKey: "dateIntake") as! Date
-                           //let dailyAmountDrank = i.value(forKey: "dailyAmountDrank") as! Int64
-                          // let beverage = i.value(forKey: "beverage") as! String
-                           let amountDrank = i.value(forKey: "amountDrank") as! Int64
-                           
-                           let timediff = Int(dateIntake.timeIntervalSince(self.date))
-                           if timediff < 86400 && timediff >= 0 {
-                            var totalDayDrank: [Int] = []
-                            totalDayDrank.append(Int(amountDrank))
-                            self.test = totalDayDrank.reduce(0, +)
-                               print("Drank for today  \(totalDayDrank)")
-                           }
-            }
-
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func AmountDrankDaily() {
+//
+//        var viewContext: NSManagedObjectContext { PersistenceController.shared.container.viewContext } //remove error from '+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name
+//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "HydrationData")
+//
+//        do {
+//            //self.test.removeAll()
+//            let result = try viewContext.fetch(req)
+//            for i in result as! [NSManagedObject] {
+//                          // let id = i.value(forKey: "id") as! UUID
+//                           let dateIntake = i.value(forKey: "dateIntake") as! Date
+//                           //let dailyAmountDrank = i.value(forKey: "dailyAmountDrank") as! Int64
+//                          // let beverage = i.value(forKey: "beverage") as! String
+//                           let amountDrank = i.value(forKey: "amountDrank") as! Int64
+//
+//                           let timediff = Int(dateIntake.timeIntervalSince(self.date))
+//                           if timediff < 86400 && timediff >= 0 {
+//                            var totalDayDrank: [Int] = []
+//                            totalDayDrank.append(Int(amountDrank))
+//                            self.test = totalDayDrank
+//                            print("Drank for today addwaterview \(totalDayDrank.reduce(0, +))")
+//
+//                           }
+//            }
+//
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
     func playSounds(_ soundFileName : String) {
             guard let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: nil) else {
@@ -177,6 +187,15 @@ struct AddWaterView: View {
 
 struct AddWaterView_Previews: PreviewProvider {
     static var previews: some View {
-        AddWaterView(isShown: .constant(true))
+        AddWaterView(isShown: .constant(true), test: .constant([2]))
     }
+}
+
+func howMuchDrank(drank: Int) {
+    print("howmuchDrank func \(drank)")
+    let shouldbe = UserSettings().waterintakedaily * 1000
+    let percentage = (Double(drank) / shouldbe)
+    UserSettings().percentageDrank = percentage
+    
+    
 }

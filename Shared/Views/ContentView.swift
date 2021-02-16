@@ -11,7 +11,7 @@ import CoreData
 
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContexts
     @State var didnotsetup = UserDefaults.standard.value(forKey: "didnotsetup") as? Bool ?? true //Wethever the user is logged in
     @State var changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false //Wethever the user has adjusted values
     @State var presentSheet = false
@@ -39,7 +39,7 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 60, height: 60, alignment: .center)
                         }.sheet(isPresented: $presentSheet){
-                            SettingsView(isPresented: self.$presentSheet)
+                            SettingsView(isPresented: self.$presentSheet, howTotalDrank: self.$totalDayDrank)
                         }
                         
                         Spacer()
@@ -85,7 +85,7 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 60, height: 60, alignment: .center)
                         }.sheet(isPresented: $presentSheet){
-                            SettingsView(isPresented: self.$presentSheet)
+                            SettingsView(isPresented: self.$presentSheet, howTotalDrank: self.$totalDayDrank)
                         }
                         
                         Spacer()
@@ -99,7 +99,7 @@ struct ContentView: View {
                                 }) {
                                     Image(systemName: "plus.app").font(.system(size: 84))
                                 }.sheet(isPresented: self.$waterAddSheet) {
-                                    AddWaterView(isShown: self.$waterAddSheet)
+                                    AddWaterView(isShown: self.$waterAddSheet, test: self.$totalDayDrank)
                                 }
 
                                 Text("Add your drink").foregroundColor(.gray)
@@ -117,11 +117,11 @@ struct ContentView: View {
                 }.onAppear(perform: { // So that the timer resest automatically at midnight
                     let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
                     if timediff >= 86400 {
-                        self.AddToWeekly()
+//                        self.AddToWeekly()
                         self.userSettings.firstDrinkDay = true
                         self.userSettings.percentageDrank = 0
                         self.userSettings.startDrinkTime = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
-                        self.userSettings.drankToday = 0
+//                        self.userSettings.drankToday = 0
                         print("timedifference is more than a day")
                        
                         UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
@@ -142,7 +142,8 @@ struct ContentView: View {
         
         
         .onAppear {
-            
+           
+            AmountDrankDaily()
             scheduleNotifications() //In order to scheduleNotificaitons
             waterintake() //Incase of
          //Looks for if the value has changes so it can change the view
@@ -200,6 +201,7 @@ struct ContentView: View {
         
         var viewContext: NSManagedObjectContext { PersistenceController.shared.container.viewContext } //remove error from '+entityForName: nil is not a legal NSManagedObjectContext parameter searching for entity name
         let req = NSFetchRequest<NSFetchRequestResult>(entityName: "HydrationData")
+        self.totalDayDrank.removeAll()
         
         do {
             let result = try viewContext.fetch(req)
@@ -221,19 +223,19 @@ struct ContentView: View {
             print(error.localizedDescription)
         }
     }
-    func AddToWeekly() {
-        let i = HydrationDailyData(context: viewContext)
-
-        i.id = UUID()
-        i.forDate = userSettings.startDrinkTime
-        i.amountDrank = Int64(userSettings.drankToday)
-        do {
-            try viewContext.save()
-        } catch {
-            print(error.localizedDescription)
-        }
-
-    }
+//    func AddToWeekly() {
+//        let i = HydrationDailyData(context: viewContext)
+//
+//        i.id = UUID()
+//        i.forDate = userSettings.startDrinkTime
+////        i.amountDrank = Int64(userSettings.drankToday)
+//        do {
+//            try viewContext.save()
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//
+//    }
     
     func waterintake() {
         let hourstominutes = (Double(userSettings.exerciseweekly) ) * 60
@@ -294,9 +296,9 @@ struct UserSettingsValues: View { //Debug only in case somnething goes wrong
     var body: some View {
         VStack {
             Text("\(userSettings.percentageDrank * 100, specifier: "%g")%").font(.largeTitle).bold()
-            Text("You drank \(userSettings.drankToday) ml of fluid so far").font(.headline).foregroundColor(.gray)
+            Text("You drank \(amountDrank.reduce(0, +)) ml of fluid so far").font(.headline).foregroundColor(.gray)
             Text("\(userSettings.waterintakedaily)").font(.footnote)
-        }
+        }.onAppear(perform: {print("AmountDrank Int \(self.amountDrank) ")})
         
 
     }
@@ -323,10 +325,4 @@ struct WaterDropView: View {
     
 }
 
-func howMuchDrank(drank: Int) {
-    let shouldbe = UserSettings().waterintakedaily * 1000
-    let percentage = (Double(drank) / shouldbe)
-    UserSettings().percentageDrank = percentage
-    
-    
-}
+

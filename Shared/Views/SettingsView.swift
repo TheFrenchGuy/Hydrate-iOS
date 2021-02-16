@@ -19,6 +19,7 @@ struct SettingsView: View {
     @State var changeOccured = UserDefaults.standard.value(forKey: "changeOccured") as? Bool ?? false //Wethever the user has adjusted values
     @State var showEmailAlert = false ///Show the email address when user promps alert
     @State var showCalendar = false ///Show the Past data calendar to the user
+    @Binding var howTotalDrank: [Int]
     var format = "%g"
     var body: some View {
             ZStack {
@@ -168,7 +169,7 @@ struct SettingsView: View {
                 } else {
                     print("Data has not been changed")
                 }
-                howMuchDrank(drank: Int(userSettings.drankToday))
+                howMuchDrank(drank: self.howTotalDrank.reduce(0,+))
             })
     }
     struct SizePreferenceKey: PreferenceKey { ///Reference to https://stackoverflow.com/questions/56573373/swiftui-get-size-of-child //to get the size of the child
@@ -195,7 +196,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(isPresented: .constant(true))
+        SettingsView(isPresented: .constant(true), howTotalDrank: .constant([120]))
     }
 }
 

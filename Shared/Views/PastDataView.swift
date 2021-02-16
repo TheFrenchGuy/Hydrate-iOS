@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-
+import SwiftUICharts
 
 class PastDataHour: ObservableObject {
     var midnight: Int = 0
@@ -41,51 +41,67 @@ class PastDataHour: ObservableObject {
 struct PastDataView: View {
     @ObservedObject var pastDataHour = PastDataHour()
     @State var totalDayDrank: [Int] = []
-    @State var totalHourDrank: [Int] = []
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var userSettings = UserSettings()
     @FetchRequest(fetchRequest: HydrationData.fetchAllItems()) var hydrationData: FetchedResults<HydrationData> //Fetches the coredate product stacks
     @FetchRequest(fetchRequest: HydrationDailyData.fetchAllItems()) var hydrationDailyData: FetchedResults<HydrationDailyData> //Fetches the coredate product stacks
     @State var date: Date = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0 , of: Date())!)
-    @State var testArray: [Int] = []
+    @State var testArray: [Double] = []
     @State var iteration: Int = 1
+    
+    var dateFormatter: DateFormatter { //Used in order to format the date so it is not too long for the screen
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long //What is the size of the date
+        return formatter
+    }
+    
+    
     var body: some View {
-        
-        VStack {
-            DatePicker("Date", selection: $date, displayedComponents: .date)
-            
-            Text("\(date)")
-            List() {
-                ForEach(hydrationData) { hydration in
-                    let dateIn = hydration.dateIntake
-                    let timediff = Int(dateIn.timeIntervalSince(date))
-                    if timediff <= 86400 && timediff >= 0 {
-                        HStack {
-                            Text("\(hydration.amountDrank)")
-                            Text("\(hydration.dateIntake)")
-                            Text("\(timediff)")
-                        }
-                    }
-                    
-                }.onDelete { indexSet  in
-                    for index in indexSet {
-                        viewContext.delete(hydrationData[index])
-                        delete(hydrationData[index])
+        ZStack() {
+            GeometryReader { bounds in
+                VStack() { // this is where the chart and the axis will be put.
+                        LineView(data: self.testArray
+                                 , title: "\(self.dateFormatter.string(from: self.date))", style: Styles.barChartStyleNeonBlueLight).frame(width: bounds.size.width - 30, alignment: .center).frame(height: bounds.size.height * 0.4)
+                            
+                        GeometryReader { geometry in
+                        HStack() {
+                            Text("00").frame(width: geometry.size.width * 0.20).foregroundColor(.gray).font(.footnote)
+                            Text("06").frame(width: geometry.size.width * 0.22).foregroundColor(.gray).font(.footnote)
+                            Text("12").frame(width: geometry.size.width * 0.22).foregroundColor(.gray).font(.footnote)
+                            Text("18").frame(width: geometry.size.width * 0.20).foregroundColor(.gray).font(.footnote)
+                            Text("").frame(width: geometry.size.width * 0.20).foregroundColor(.gray).font(.footnote)
+                        }.padding(.top, 25)
                         
-                    }
-                    do {
-                        try viewContext.save()
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                    
-                }
-                .onChange(of: testArray) { rawValue in
+                            
+                        
+                        }.frame(width: bounds.size.width - 35,height: bounds.size.height * 0.05, alignment: .leading)
+                        
+                        VStack() {
+                            DatePicker("Date", selection: $date, displayedComponents: .date).frame(width: bounds.size.width - 30)
+                            
+                            Divider().padding(10)
+                            
+                            VStack() {
+                                Text("Drank so far today: \(totalDayDrank.reduce(0, +)) ml ").font(.headline).bold()
+                                Text("Your last drink was at 4pm and it was water")
+                            }.frame(width: bounds.size.width - 30, alignment: .leading)
+                            
+                            Spacer()
+                            
+                            VStack () {
+                                Image(systemName: "externaldrive.connected.to.line.below")
+                            }
+                            
+                        }.padding(.top, 10)
+                    }.frame(width: UIScreen.main.bounds.width)
+                
+                    .onChange(of: testArray) { rawValue in
                     self.GraphArray()
-//                    print("Total array for day \(totalDayDrank.reduce(0, +))")
-//                    print("Total per hour \(testArray)")
-//                   print("count \(iteration)")
+    //                    print("Total array for day \(totalDayDrank.reduce(0, +))")
+    //                    print("Total per hour \(testArray)")
+    //                   print("count \(iteration)")
                 }
+                    
                 .onAppear() {
                     self.getHourDrank() //Will crash when being placed inside the foreeach loop
 
@@ -95,40 +111,24 @@ struct PastDataView: View {
                     print("count \(iteration)")
                 }
                 
-                
-                
-            }
-            .onChange(of: date) { rawValue in
-                //self.iteration = 0
-                self.testArray.removeAll()
-                self.getHourDrank() //Will crash when being placed inside the foreeach loop
-//
-//                self.GraphArray()
-                 print("Total array for day Change\(totalDayDrank.reduce(0, +))")
-                 print("Total per hour \(testArray)")
-                print("count \(iteration)")
-            }
-            ScrollView(.horizontal) {
-                HStack {
-                
-                    ForEach(testArray, id: \.self) {
-                        data in
-                        
-                        BarView(value: CGFloat(data), cornerRadius: CGFloat(10))
-                    }
+            
+                .onChange(of: date) { rawValue in
+                    //self.iteration = 0
+                    self.testArray.removeAll()
+                    self.getHourDrank() //Will crash when being placed inside the foreeach loop
+        //
+        //                self.GraphArray()
+                     print("Total array for day Change\(totalDayDrank.reduce(0, +))")
+                     print("Total per hour \(testArray)")
+                    print("count \(iteration)")
                 }
-            }
+                   
+                
+                
             
             
-                List(){
-                    Text("Daily record")
-                    ForEach(hydrationDailyData) { hydration in
-                    HStack {
-                        Text("\(hydration.amountDrank)")
-                        Text("\(hydration.forDate!)")
-                    }
-                }
-            }
+               
+            }.frame(width: UIScreen.main.bounds.width)
         }
     }
     
@@ -137,7 +137,7 @@ struct PastDataView: View {
         let timediff = Int(self.userSettings.startDrinkTime.timeIntervalSince(i.dateIntake))
         print(timediff)
         if timediff <= 86400 {
-            self.userSettings.drankToday -= Int32(i.amountDrank)
+//            self.userSettings.drankToday -= Int32(i.amountDrank)
             UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
             NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
                 print("Redirecting to Reload View")
@@ -159,7 +159,7 @@ struct PastDataView: View {
             let result = try viewContext.fetch(req)
             self.totalDayDrank.removeAll()
             self.testArray.removeAll()
-            self.totalHourDrank.removeAll()
+        
             //self.iteration += 1
             self.pastDataHour.midnight = 0 //Need to reset all the stored value in pastDataHour into 0 each time it is being run ///Could do into an other function that could be incoroporated inside it to be cleaner
             self.pastDataHour.oneam = 0
@@ -442,31 +442,31 @@ struct PastDataView: View {
         
         self.testArray.removeAll()
        // self.iteration += 1
-        self.testArray.append(pastDataHour.midnight / self.iteration)
-        self.testArray.append(pastDataHour.oneam / self.iteration)
-        self.testArray.append(pastDataHour.twoam / self.iteration)
-        self.testArray.append(pastDataHour.threeam / self.iteration)
-        self.testArray.append(pastDataHour.fouram / self.iteration)
-        self.testArray.append(pastDataHour.fiveam / self.iteration)
-        self.testArray.append(pastDataHour.sixam / self.iteration)
-        self.testArray.append(pastDataHour.sevenam / self.iteration)
-        self.testArray.append(pastDataHour.eightam / self.iteration)
-        self.testArray.append(pastDataHour.nineam / self.iteration)
-        self.testArray.append(pastDataHour.tenam / self.iteration)
-        self.testArray.append(pastDataHour.elevenam / self.iteration)
-        self.testArray.append(pastDataHour.twelveam / self.iteration)
+        self.testArray.append(Double(pastDataHour.midnight / self.iteration))
+        self.testArray.append(Double(pastDataHour.oneam / self.iteration))
+        self.testArray.append(Double(pastDataHour.twoam / self.iteration))
+        self.testArray.append(Double(pastDataHour.threeam / self.iteration))
+        self.testArray.append(Double(pastDataHour.fouram / self.iteration))
+        self.testArray.append(Double(pastDataHour.fiveam / self.iteration))
+        self.testArray.append(Double(pastDataHour.sixam / self.iteration))
+        self.testArray.append(Double(pastDataHour.sevenam / self.iteration))
+        self.testArray.append(Double(pastDataHour.eightam / self.iteration))
+        self.testArray.append(Double(pastDataHour.nineam / self.iteration))
+        self.testArray.append(Double(pastDataHour.tenam / self.iteration))
+        self.testArray.append(Double(pastDataHour.elevenam / self.iteration))
+        self.testArray.append(Double(pastDataHour.twelveam / self.iteration))
         
-        self.testArray.append(pastDataHour.onepm / self.iteration)
-        self.testArray.append(pastDataHour.twopm / self.iteration)
-        self.testArray.append(pastDataHour.threepm / self.iteration)
-        self.testArray.append(pastDataHour.fourpm / self.iteration)
-        self.testArray.append(pastDataHour.fivepm / self.iteration)
-        self.testArray.append(pastDataHour.sixpm / self.iteration)
-        self.testArray.append(pastDataHour.sevenpm / self.iteration)
-        self.testArray.append(pastDataHour.eightpm / self.iteration)
-        self.testArray.append(pastDataHour.ninepm / self.iteration)
-        self.testArray.append(pastDataHour.tenpm / self.iteration)
-        self.testArray.append(pastDataHour.elevenpm / self.iteration)
+        self.testArray.append(Double(pastDataHour.onepm / self.iteration))
+        self.testArray.append(Double(pastDataHour.twopm / self.iteration))
+        self.testArray.append(Double(pastDataHour.threepm / self.iteration))
+        self.testArray.append(Double(pastDataHour.fourpm / self.iteration))
+        self.testArray.append(Double(pastDataHour.fivepm / self.iteration))
+        self.testArray.append(Double(pastDataHour.sixpm / self.iteration))
+        self.testArray.append(Double(pastDataHour.sevenpm / self.iteration))
+        self.testArray.append(Double(pastDataHour.eightpm / self.iteration))
+        self.testArray.append(Double(pastDataHour.ninepm / self.iteration))
+        self.testArray.append(Double(pastDataHour.tenpm / self.iteration))
+        self.testArray.append(Double(pastDataHour.elevenpm / self.iteration))
     }
     
 
@@ -499,22 +499,4 @@ struct PastDataView_Previews: PreviewProvider {
 }
 
 
-struct BarView: View{
 
-    var value: CGFloat
-    var cornerRadius: CGFloat
-    
-    var body: some View {
-        VStack {
-
-            ZStack (alignment: .bottom) {
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .frame(width: 10, height: 200).foregroundColor(.black)
-                RoundedRectangle(cornerRadius: cornerRadius)
-                    .frame(width: 10, height: value * 0.1).foregroundColor(.green)
-                
-            }.padding(.bottom, 8)
-        }
-        
-    }
-}

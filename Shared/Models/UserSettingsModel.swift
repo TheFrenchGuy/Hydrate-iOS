@@ -51,11 +51,11 @@ class UserSettings: ObservableObject { //Class used to store user settings
         }
     }
     
-    @Published var drankToday: Int32 {
-        didSet {
-            UserDefaults.standard.set(drankToday, forKey: "drankToday")
-        }
-    }
+//    @Published var drankToday: Int32 {
+//        didSet {
+//            UserDefaults.standard.set(drankToday, forKey: "drankToday")
+//        }
+//    }
     
     @Published var percentageDrank: Double {
         didSet {
@@ -73,7 +73,7 @@ class UserSettings: ObservableObject { //Class used to store user settings
         self.cupSize = UserDefaults.standard.object(forKey: "cupSize") as? Int32 ?? 200
         self.firstDrinkDay = UserDefaults.standard.object(forKey: "firstDrinkDay") as? Bool ?? true
         self.startDrinkTime = UserDefaults.standard.object(forKey: "startDrinkTime") as? Date ?? (Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()))!
-        self.drankToday = UserDefaults.standard.object(forKey: "drankToday") as? Int32 ?? 0
+       // self.drankToday = UserDefaults.standard.object(forKey: "drankToday") as? Int32 ?? 0
         self.percentageDrank = UserDefaults.standard.object(forKey: "percentageDrank") as? Double ?? 0.0
     }
 }

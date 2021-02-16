@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		601392CF25C8C93C00143914 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
 		6023507225C45E1300A31DE2 /* Autofiller Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6023507125C45E1300A31DE2 /* Autofiller Name.swift */; };
 		6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 6024CA8B25C83678001147A8 /* SettingsLottie.json */; };
+		604629E625D4399F00387004 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 604629E525D4399F00387004 /* SwiftUICharts */; };
+		60462A0D25D446CE00387004 /* ColorGardient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60462A0C25D446CE00387004 /* ColorGardient.swift */; };
 		60699E9725C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */; };
 		60699E9825C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */; };
 		60699EBE25C8AE61007B2519 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60699EBD25C8AE61007B2519 /* Persistence.swift */; };
@@ -93,6 +95,7 @@
 		6001425025C209CB00903C1F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		6023507125C45E1300A31DE2 /* Autofiller Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Autofiller Name.swift"; sourceTree = "<group>"; };
 		6024CA8B25C83678001147A8 /* SettingsLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SettingsLottie.json; sourceTree = "<group>"; };
+		60462A0C25D446CE00387004 /* ColorGardient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGardient.swift; sourceTree = "<group>"; };
 		60699E9425C879EE007B2519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		60699E9625C8AD51007B2519 /* WaterHydrationModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WaterHydrationModel.xcdatamodel; sourceTree = "<group>"; };
 		60699EBD25C8AE61007B2519 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95F15BF4A1AF0937D5497D07 /* Pods_Hydrate__iOS_.framework in Frameworks */,
+				604629E625D4399F00387004 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +233,7 @@
 				609E064425C9B67100D1BA0B /* SoundEffect */,
 				606EDEEF25C41A1D00A461D4 /* LottieView.swift */,
 				6023507125C45E1300A31DE2 /* Autofiller Name.swift */,
+				60462A0C25D446CE00387004 /* ColorGardient.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +320,9 @@
 				60FB418225C2EDDB00624103 /* PBXTargetDependency */,
 			);
 			name = "Hydrate (iOS)";
+			packageProductDependencies = (
+				604629E525D4399F00387004 /* SwiftUICharts */,
+			);
 			productName = "Hydrate (iOS)";
 			productReference = 6001424525C209CB00903C1F /* Hydrate.app */;
 			productType = "com.apple.product-type.application";
@@ -385,6 +393,9 @@
 				Base,
 			);
 			mainGroup = 6001423825C209CA00903C1F;
+			packageReferences = (
+				604629E425D4399F00387004 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 6001424625C209CB00903C1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -545,6 +556,7 @@
 				60699E9725C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld in Sources */,
 				60A0EEED25C8B1BB001A73CE /* HydrationData+CoreDataProperties.swift in Sources */,
 				60A0EEF725C8B48C001A73CE /* AddWaterView.swift in Sources */,
+				60462A0D25D446CE00387004 /* ColorGardient.swift in Sources */,
 				606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */,
 				60B5C0E525CB19DE009A11E9 /* PastDataView.swift in Sources */,
 				60FB41D225C30DC800624103 /* SetupView.swift in Sources */,
@@ -892,6 +904,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		604629E425D4399F00387004 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		604629E525D4399F00387004 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 604629E425D4399F00387004 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		60699E9525C8AD51007B2519 /* WaterHydrationModel.xcdatamodeld */ = {
