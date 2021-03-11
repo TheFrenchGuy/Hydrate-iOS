@@ -124,9 +124,9 @@ struct ContentView: View {
 //                        self.userSettings.drankToday = 0
                         print("timedifference is more than a day")
                        
-                        UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
-                        NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
-                            print("Redirecting to Reload View")
+//                        UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
+//                        NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
+//                            print("Redirecting to Reload View")
                         
                         
                     }
@@ -135,7 +135,8 @@ struct ContentView: View {
             
             
             
-        }.onTapGesture {
+        }.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+        .onTapGesture {
             
         }
         .background(Color.white)

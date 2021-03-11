@@ -48,6 +48,7 @@ struct PastDataView: View {
     @State var date: Date = (Calendar.current.date(bySettingHour: 0, minute: 0, second: 0 , of: Date())!)
     @State var testArray: [Double] = []
     @State var iteration: Int = 1
+    @State var allDataViewBool: Bool = false
     
     var dateFormatter: DateFormatter { //Used in order to format the date so it is not too long for the screen
         let formatter = DateFormatter()
@@ -89,7 +90,12 @@ struct PastDataView: View {
                             Spacer()
                             
                             VStack () {
-                                Image(systemName: "externaldrive.connected.to.line.below")
+                                Button(action : {
+                                    self.allDataViewBool = true
+                                }) {
+                                    Image(systemName: "externaldrive.connected.to.line.below")
+                                        .foregroundColor(.black)
+                                }.sheet(isPresented: self.$allDataViewBool) { AllDataView(howTotalDrank: self.$totalDayDrank)}
                             }
                             
                         }.padding(.top, 10)
@@ -129,24 +135,12 @@ struct PastDataView: View {
             
                
             }.frame(width: UIScreen.main.bounds.width)
-        }
+                
+                Spacer()
+            }
     }
     
-    func delete(_ i:HydrationData) {
-//        let timediff = Int(Date().timeIntervalSince(self.userSettings.startDrinkTime))
-        let timediff = Int(self.userSettings.startDrinkTime.timeIntervalSince(i.dateIntake))
-        print(timediff)
-        if timediff <= 86400 {
-//            self.userSettings.drankToday -= Int32(i.amountDrank)
-            UserDefaults.standard.set(true, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
-            NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
-                print("Redirecting to Reload View")
-            
-        } else {
-            print("Nothing to delete since been more than a day")
-        }
-        
-    }
+    
     
     
     func getHourDrank() {
@@ -497,6 +491,10 @@ struct PastDataView_Previews: PreviewProvider {
         PastDataView()
     }
 }
+
+
+
+
 
 
 

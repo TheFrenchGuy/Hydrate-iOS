@@ -13,7 +13,7 @@ struct HydrateApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            SpalshView().environment(\.managedObjectContext, persistenceController.container.viewContext) //SO that it show the Splash loading animation
         }
     }
 }

@@ -33,13 +33,20 @@
 		<string>processing</string>
 	</array>
 	<key>UILaunchScreen</key>
-	<dict/>
-	<key>UILaunchStoryboardName</key>
-	<string>AppIcon</string>
+	<dict>
+		<key>UIImageName</key>
+		<string>HydrateSmall</string>
+		<key>UIColorName</key>
+		<string>bg</string>
+	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
