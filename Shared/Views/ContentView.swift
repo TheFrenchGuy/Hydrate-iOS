@@ -97,7 +97,9 @@ struct ContentView: View {
                                     self.waterAddSheet = true
 
                                 }) {
-                                    Image(systemName: "plus.app").font(.system(size: 84))
+                                    LinearGradient(gradient: Gradient(colors: [.lightblue, .Blu]), startPoint: .leading, endPoint: .trailing)
+                                        .mask(Image(systemName: "plus.app").font(.system(size: 84)))
+                                        
                                 }.sheet(isPresented: self.$waterAddSheet) {
                                     AddWaterView(isShown: self.$waterAddSheet, test: self.$totalDayDrank)
                                 }
@@ -136,6 +138,7 @@ struct ContentView: View {
             
             
         }.padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top)
+        .padding(.bottom, UIApplication.shared.windows.first?.safeAreaInsets.bottom)
         .onTapGesture {
             
         }

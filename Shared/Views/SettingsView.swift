@@ -44,7 +44,7 @@ struct SettingsView: View {
                         
                             GeometryReader() { geometry in
                             ZStack {
-                                RoundedRectangle(cornerRadius: 15).stroke(Color.lightblue, lineWidth: 6)
+                                RoundedRectangle(cornerRadius: 15).stroke(LinearGradient(gradient: Gradient(colors: [.lightblue, .Blu]), startPoint: .leading, endPoint: .trailing), lineWidth: 6)
                                 
                                 VStack() {
                                     HStack() {
@@ -87,7 +87,7 @@ struct SettingsView: View {
                             
                         GeometryReader() { geometry in
                             ZStack() {
-                                 RoundedRectangle(cornerRadius: 15).stroke(Color.lightred, lineWidth: 6)
+                                RoundedRectangle(cornerRadius: 15).stroke(LinearGradient(gradient: Gradient(colors: [.reddish, .barbipink ]), startPoint: .leading, endPoint: .trailing), lineWidth: 6)
                                 Button(action: {
                                     self.showCalendar.toggle()
                                 }){
