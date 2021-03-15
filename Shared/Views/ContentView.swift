@@ -7,7 +7,8 @@
 
 import SwiftUI
 import CoreData
-
+import AVFoundation
+import Combine
 
 
 struct ContentView: View {
@@ -23,6 +24,9 @@ struct ContentView: View {
     @State var totalDayDrank: [Int] = []
     
     @State var percentagedrank: Double = 0.0
+    
+    
+    @State var audioPlayer: AVAudioPlayer!
     var body: some View {
         ZStack {
             if self.didnotsetup { //First boot up initiziale setup
@@ -64,6 +68,9 @@ struct ContentView: View {
             
             if self.changeOccured { //Makes the UI refresh when a changed has occured
                 Text("Reloading").onAppear(perform: {
+                    withAnimation() { //Plays water splash sound when adding or changing settings for the water 
+                        playSounds("WaterPoor.mp3")
+                    }
                     AmountDrankDaily()
                     UserDefaults.standard.set(false, forKey: "changeOccured") // This means that the user is logging in the first time so he must complete the daily intake calculator
                     NotificationCenter.default.post(name: NSNotification.Name("changeOccured"), object: nil) //Put a backend notification to inform app the data has been written
@@ -249,6 +256,19 @@ struct ContentView: View {
         userSettings.waterintakedaily = total
         
     }
+    
+    func playSounds(_ soundFileName : String) {
+            guard let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: nil) else {
+                fatalError("Unable to find \(soundFileName) in bundle")
+            }
+
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            } catch {
+                print(error.localizedDescription)
+            }
+        audioPlayer.play()
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {

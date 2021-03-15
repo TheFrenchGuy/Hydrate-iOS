@@ -29,6 +29,7 @@
 		606EDEF025C41A1D00A461D4 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEEF25C41A1D00A461D4 /* LottieView.swift */; };
 		606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */ = {isa = PBXBuildFile; fileRef = 606EDEF525C41A3700A461D4 /* ArrowDown.json */; };
 		606EDEFF25C433B200A461D4 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */; };
+		607F279925FFC95100893DAF /* WaterPoor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 607F279825FFC95100893DAF /* WaterPoor.mp3 */; };
 		608B467625FA8E4600D23D8A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608B467525FA8E4600D23D8A /* SplashView.swift */; };
 		608B467D25FA8E6700D23D8A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608B467525FA8E4600D23D8A /* SplashView.swift */; };
 		608B468225FA8F4200D23D8A /* AllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608B468125FA8F4200D23D8A /* AllDataView.swift */; };
@@ -107,6 +108,7 @@
 		606EDEEF25C41A1D00A461D4 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		606EDEF525C41A3700A461D4 /* ArrowDown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArrowDown.json; sourceTree = "<group>"; };
 		606EDEFE25C433B200A461D4 /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
+		607F279825FFC95100893DAF /* WaterPoor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WaterPoor.mp3; sourceTree = "<group>"; };
 		608B467525FA8E4600D23D8A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		608B468125FA8F4200D23D8A /* AllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataView.swift; sourceTree = "<group>"; };
 		60951DB825C9BB8D00489B18 /* PooringWater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PooringWater.mp3; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		609E064425C9B67100D1BA0B /* SoundEffect */ = {
 			isa = PBXGroup;
 			children = (
+				607F279825FFC95100893DAF /* WaterPoor.mp3 */,
 				60951DB825C9BB8D00489B18 /* PooringWater.mp3 */,
 			);
 			path = SoundEffect;
@@ -421,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60951DB925C9BB8D00489B18 /* PooringWater.mp3 in Resources */,
+				607F279925FFC95100893DAF /* WaterPoor.mp3 in Resources */,
 				6024CA8C25C83678001147A8 /* SettingsLottie.json in Resources */,
 				6001425525C209CB00903C1F /* Assets.xcassets in Resources */,
 				606EDEF625C41A3700A461D4 /* ArrowDown.json in Resources */,

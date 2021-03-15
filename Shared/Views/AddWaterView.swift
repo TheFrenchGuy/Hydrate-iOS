@@ -60,9 +60,9 @@ struct AddWaterView: View {
 
 
                         Button(action: {
-                            withAnimation() {
-                                playSounds("PooringWater.mp3")
-                            }
+//                            withAnimation() {
+//                                playSounds("PooringWater.mp3")
+//                            }
                             AddToWaterIntake()
                            // AmountDrankDaily()
                             let drankml = Int64(self.amountDrank)
